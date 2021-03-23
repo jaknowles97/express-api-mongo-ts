@@ -2,9 +2,21 @@ import http from 'http';
 import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
-import sampleRoutes from './routes/sample';
+import robotRoutes from './routes/robot';
+import mongoose from 'mongoose';
+
 const NAMESPACE = 'Server';
 const router = express();
+
+// connect to mongo
+mongoose
+    .connect(config.mongo.url, config.mongo.options)
+    .then((result) => {
+        logging.info(NAMESPACE, 'Mongo Connected');
+    })
+    .catch((error) => {
+        logging.error(NAMESPACE, error.mesage, error);
+    });
 
 // logging request
 router.use((req, res, next) => {
@@ -14,6 +26,7 @@ router.use((req, res, next) => {
     });
     next();
 });
+
 //   Parse the request
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
@@ -33,7 +46,7 @@ router.use((req, res, next) => {
 });
 
 /** Routes go here */
-router.use('/api/sample', sampleRoutes);
+router.use('/api/robots', robotRoutes);
 
 /** Error handling */
 router.use((req, res, next) => {
