@@ -1,4 +1,5 @@
 import http from 'http';
+// @ts-ignore
 import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
