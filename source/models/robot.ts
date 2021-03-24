@@ -7,7 +7,8 @@ const RobotSchema: Schema = new Schema(
         name: { type: String, required: true },
         color: { type: String, required: true },
         attack: { type: Number, required: true },
-        defense: { type: Number, required: true }
+        defense: { type: Number, required: true },
+        battles: [{ type: Schema.Types.ObjectId, ref: 'Battle' }]
     },
     {
         timestamps: true

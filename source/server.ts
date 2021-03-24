@@ -3,6 +3,7 @@ import express from 'express';
 import logging from './config/logging';
 import config from './config/config';
 import robotRoutes from './routes/robot';
+import battleRoutes from './routes/battle';
 import mongoose from 'mongoose';
 
 const NAMESPACE = 'Server';
@@ -47,6 +48,7 @@ router.use((req, res, next) => {
 
 /** Routes go here */
 router.use('/api/robots', robotRoutes);
+router.use('/api/battles', battleRoutes);
 
 /** Error handling */
 router.use((req, res, next) => {
