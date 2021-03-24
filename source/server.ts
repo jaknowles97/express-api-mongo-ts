@@ -6,6 +6,7 @@ import config from './config/config';
 import robotRoutes from './routes/robot';
 import battleRoutes from './routes/battle';
 import mongoose from 'mongoose';
+import { NextFunction, Request, Response } from 'express';
 
 const NAMESPACE = 'Server';
 const router = express();
@@ -21,7 +22,7 @@ mongoose
     });
 
 // logging request
-router.use((req, res, next) => {
+router.use((req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
     res.on('finish', () => {
         logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
@@ -34,7 +35,7 @@ router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
 //  API Rules
-router.use((req, res, next) => {
+router.use((req: Request, res: Response, next: NextFunction) => {
     // Access-Control-Allow-Origin is only for development purposes (it allows requests to come from anywhere). All routes and ips should be predefined in production!!!
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -52,7 +53,7 @@ router.use('/api/robots', robotRoutes);
 router.use('/api/battles', battleRoutes);
 
 /** Error handling */
-router.use((req, res, next) => {
+router.use((req: Request, res: Response, next: NextFunction) => {
     const error = new Error('Not found');
 
     res.status(404).json({
