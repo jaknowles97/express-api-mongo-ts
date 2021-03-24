@@ -29,7 +29,7 @@ const createBattle = (req: Request, res: Response, next: NextFunction) => {
             }
         };
 
-        // turned based battle loop... Did someone say spaghetti?
+        // turn based battle loop... Did someone say spaghetti?
         do {
             if (status.robot1.hp <= 0) {
                 const battle = new Battle({
