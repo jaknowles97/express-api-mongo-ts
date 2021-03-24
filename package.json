@@ -11,8 +11,7 @@
     "postinstall": "tsc",
     "watch-node": "nodemon source/server.js",
     "watch-ts": "tsc -w",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master",
-    "build": "rm -rf build/ && prettier --write && tsc"
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "repository": {
     "type": "git",
