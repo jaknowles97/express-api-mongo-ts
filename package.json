@@ -8,9 +8,8 @@
   },
 
   "scripts": {
-    "build-ts": "tsc",
-    "postinstall": "npm run build-ts",
-    "start": "npm run build-ts",
+    "start": "ts-node source/server.ts",
+    "postinstall": "tsc",
     "watch-node": "nodemon -x ts-node source/server.ts",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
