@@ -6,6 +6,7 @@ import config from './config/config';
 import robotRoutes from './routes/robot';
 import battleRoutes from './routes/battle';
 import mongoose from 'mongoose';
+//@ts-ignore
 import { NextFunction, Request, Response } from 'express';
 
 const NAMESPACE = 'Server';
