@@ -6,6 +6,7 @@
   "engines": {
     "node": "12.18.1"
   },
+
   "scripts": {
     "start": "ts-node source/server.ts",
     "postinstall": "tsc",
